@@ -1,16 +1,16 @@
-
 package main
 
 import (
 	"fmt"
 	"os"
-   	"os/exec"
+	"os/exec"
 )
 
-func main(){
+func main() {
 	c := exec.Command("clear")
-   	c.Stdout = os.Stdout
-   	c.Run()
-	fmt.Printf("Lesson 1.\nStarting....\n...started\n")
-}
+	c.Stdout = os.Stdout
+	c.Run()
+	fmt.Printf("Lesson 1.1\n")
+    handles()
 
+}

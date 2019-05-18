@@ -1,11 +1,8 @@
-#This builds my rkt-docker container
-docker build -t rkt-docker .
+#This builds my learning:latest docker container and removes intermediate containers, martinrocket part of tag is for docker hub.
+docker build --rm -f "Dockerfile" -t martinrocket/learning1:latest .
 
 #This runs the container
-docker run -d -p 8080:8080 rkt-docker
-
-#This names a running container "martin" so that "docker stop martin" works
-docker run --name martin -d -p 8080:8080 rkt-docker
+docker run -d -p 8080:8080 learning1:latest
 
 #This runs a bash command line with golang latest version loaded.
 docker run -it --entrypoint /bin/bash golang

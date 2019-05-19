@@ -1,15 +1,14 @@
 package main
 
 import (
+	"fmt"
+	"log"
 	"net/http"
-    "log"
-    "fmt"
-    "time"
-    
+	"time"
 )
 
 func handles() {
-    
+
 	log.Println("My learning web server starting @ http://localhost:8080/intro")
 
 	r := http.NewServeMux()
@@ -17,15 +16,14 @@ func handles() {
 	r.HandleFunc("/about", handleAbout)
 	r.HandleFunc("/careers", handleCareers)
 	r.HandleFunc("/intro", handleIntro)
+	r.HandleFunc("/doc", handleDoc)
 	r.HandleFunc("/", handleRoot)
-    r.HandleFunc("/doc", handleDoc)
 
 	err := http.ListenAndServe(":8080", r) // set listen port
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}
 }
-
 
 func handleAPI(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "you got the api")
@@ -61,7 +59,7 @@ func handleIntro(w http.ResponseWriter, r *http.Request) {
 }
 
 func handleDoc(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintf(w, `
+	fmt.Fprintf(w, `
     <head>
       <h2>api documentation</h2>
 

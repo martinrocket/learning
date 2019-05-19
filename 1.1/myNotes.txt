@@ -21,3 +21,10 @@ GIT
 This resets the files that have changed back to the origin master
 git reset --hard origin/master
 git pull origin master
+
+GCP
+Deploy my docker image to Cloud run
+gcloud builds submit --tag gcr.io/martinlearning/1.1
+
+run my docker image on Cloud run
+gcloud beta run deploy --image gcr.io/martinlearning/1.1

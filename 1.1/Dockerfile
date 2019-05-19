@@ -8,7 +8,9 @@ COPY . .
 RUN CGO_ENABLED=0 GOOS=linux go build .
 
 # Stage 2 build the inage we deploy
-FROM scratch
+# FROM scratch
+FROM alpine 
+RUN apk add --no-cache ca-certificates
 COPY --from=builder $HOME/src/github.com/martinrocket/learning/1.1 .
 ENTRYPOINT ["./1.1"]
 EXPOSE 8080

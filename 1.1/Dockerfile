@@ -5,11 +5,10 @@ FROM golang:1.12.1-alpine3.9 AS builder
 WORKDIR $HOME/src/github.com/martinrocket/learning/1.1
 # Copy the project files 
 COPY . . 
-RUN go build .
+RUN CGO_ENABLED=0 GOOS=linux go build .
 
 # Stage 2 build the inage we deploy
 FROM scratch
 COPY --from=builder $HOME/src/github.com/martinrocket/learning/1.1 .
-CMD ["clear"]
-CMD ["./1.1"]
+ENTRYPOINT ["./1.1"]
 EXPOSE 8080

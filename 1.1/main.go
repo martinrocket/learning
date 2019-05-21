@@ -14,6 +14,7 @@ func main() {
 	c.Stdout = os.Stdout
 	c.Run()
 	data.PrintMenu()
+	fmt.Println()
 	fmt.Printf("Lesson 1.1\n")
 	handles()
 

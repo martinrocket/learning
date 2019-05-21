@@ -2,7 +2,7 @@
 FROM golang:1.12.1-alpine3.9 AS builder
 
 # Set the working directory
-WORKDIR $HOME/src/github.com/martinrocket/learning/1.1
+WORKDIR $GOPATH/src/github.com/martinrocket/learning/1.1
 # Copy the project files 
 COPY . . 
 RUN CGO_ENABLED=0 GOOS=linux go build .
@@ -11,6 +11,6 @@ RUN CGO_ENABLED=0 GOOS=linux go build .
 # FROM scratch
 FROM alpine 
 RUN apk add --no-cache ca-certificates
-COPY --from=builder $HOME/src/github.com/martinrocket/learning/1.1 .
+COPY --from=builder $GOPATH/go/src/github.com/martinrocket/learning/1.1 . 
 ENTRYPOINT ["./1.1"]
 EXPOSE 8080

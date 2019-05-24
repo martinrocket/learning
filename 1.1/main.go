@@ -13,7 +13,6 @@ func main() {
 	ver.Vers()
 	data.PrintMenu()
 	fmt.Println()
-	fmt.Printf("Lesson 1.1\n")
 	handles()
 
 }

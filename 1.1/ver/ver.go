@@ -18,7 +18,7 @@ type DataModel struct {
 func Vers() {
 
 	v := ver()
-	fmt.Println("-", v)
+	fmt.Println(v.Name, " version:", v.Release, " ", v.Year)
 
 }
 

@@ -2,7 +2,6 @@ package data
 
 import (
 	"fmt"
-	"log"
 	"os"
 )
 
@@ -16,13 +15,10 @@ func PrintMenu() {
 	if err != nil {
 		fmt.Printf("error opening file %s\n", s.Name)
 		fmt.Println(s.Name())
-	} else {
-		log.Println(s)
 	}
 
 	defer s.Close()
 
 	menu1 := menu{"menu one"}
-	fmt.Printf("%v", menu1)
 	fmt.Println(menu1.a)
 }

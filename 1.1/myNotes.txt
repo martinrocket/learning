@@ -1,5 +1,6 @@
 #This builds my learning:latest docker container and removes intermediate containers, martinrocket part of tag is for docker hub.
 docker build --rm -f "Dockerfile" -t martinrocket/learning1:latest .
+docker build --rm  -t martinrocket/learning1:latest . 
 
 #This runs the container
 docker run -d -p 8080:8080 martinrocket/learning1:latest

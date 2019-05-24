@@ -2,17 +2,15 @@ package main
 
 import (
 	"fmt"
-	"os"
-	"os/exec"
 
 	"github.com/martinrocket/learning/1.1/data"
+	"github.com/martinrocket/learning/1.1/utils"
+	"github.com/martinrocket/learning/1.1/ver"
 )
 
 func main() {
-	c := exec.Command("clear")
-
-	c.Stdout = os.Stdout
-	c.Run()
+	utils.Clear()
+	ver.Vers()
 	data.PrintMenu()
 	fmt.Println()
 	fmt.Printf("Lesson 1.1\n")

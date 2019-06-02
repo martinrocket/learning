@@ -13,7 +13,7 @@ type menu struct {
 func PrintMenu() {
 	s, err := os.Create("./data/menu.config")
 	if err != nil {
-		fmt.Printf("error opening file %s\n", s.Name)
+		fmt.Printf("error opening file %s\n", s.Name())
 		fmt.Println(s.Name())
 	}
 

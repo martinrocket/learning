@@ -13,6 +13,7 @@ func main() {
 	ver.Vers()
 	data.PrintMenu()
 	fmt.Println()
+	utils.CreateJSON("hi", " there")
 	handles()
 
 }

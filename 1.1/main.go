@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/martinrocket/learning/1.1/data"
+	"github.com/martinrocket/learning/1.1/menu"
 	"github.com/martinrocket/learning/1.1/utils"
 	"github.com/martinrocket/learning/1.1/ver"
 )
@@ -13,7 +14,7 @@ func main() {
 	ver.Vers()
 	data.PrintMenu()
 	fmt.Println()
-	utils.CreateJSON("hi", " there")
-	handles()
+	utils.CreateJSON("hi", "there")
+	menu.StartMenu()
 
 }

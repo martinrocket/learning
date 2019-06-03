@@ -1,4 +1,4 @@
-package main
+package handles
 
 import (
 	"fmt"
@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-func handles() {
+func Handles() {
 
 	log.Println("My learning web server starting @ http://localhost:8080/intro")
 

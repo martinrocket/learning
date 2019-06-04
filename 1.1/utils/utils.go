@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"bufio"
 	"encoding/json"
 	"fmt"
 	"os"
@@ -18,16 +19,38 @@ func Clear() {
 }
 
 type MyJSON struct {
-	Field1 string `json:"Name"`
-	Field2 string `json:"Function"`
+	Field1 interface{} `json:"Name"`
+	Field2 interface{} `json:"Value"`
 }
 
 //Write JSON
-func CreateJSON(s1 string, s2 string) {
-	fmt.Println(s1)
-	fmt.Println(s2)
-	s := MyJSON{s1, s2}
-	j, _ := json.MarshalIndent(s, "", " ")
-	os.Stdout.Write(j)
+func CreateJSON() {
+	q := "quit"
+	s := MyJSON{}
+	for s.Field1 != q {
+
+		s.Field1 = rName()
+		if s.Field1 == q {
+			break
+		}
+		s.Field2 = rValue()
+		j, _ := json.MarshalIndent(s, "", " ")
+		os.Stdout.Write(j)
+		fmt.Println()
+	}
+}
+
+func rName() string {
+	scanName := bufio.NewScanner(os.Stdin)
+	fmt.Printf("Enter JSON Name: ")
+	scanName.Scan()
 	fmt.Println()
+	return scanName.Text()
+}
+func rValue() string {
+	scanValue := bufio.NewScanner(os.Stdin)
+	fmt.Printf("Enter JSON Value: ")
+	scanValue.Scan()
+	fmt.Println()
+	return scanValue.Text()
 }

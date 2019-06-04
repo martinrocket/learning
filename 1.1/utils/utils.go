@@ -42,7 +42,7 @@ func CreateJSON() {
 
 func rName() string {
 	scanName := bufio.NewScanner(os.Stdin)
-	fmt.Printf("Enter JSON Name: ")
+	fmt.Printf("Enter JSON Name( quit to exit): ")
 	scanName.Scan()
 	fmt.Println()
 	return scanName.Text()

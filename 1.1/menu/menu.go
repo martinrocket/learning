@@ -48,3 +48,9 @@ func readString() string {
 	input, _ := inputReader.ReadString('\n')
 	return input
 }
+
+func makeMenu(s []string) {
+	for i := range s {
+		fmt.Println(s[i])
+	}
+}

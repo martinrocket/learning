@@ -42,7 +42,7 @@ func CreateJSON() {
 
 func rName() string {
 	scanName := bufio.NewScanner(os.Stdin)
-	fmt.Printf("Enter JSON Name( quit to exit): ")
+	fmt.Printf("Enter JSON Name(quit to exit): ")
 	scanName.Scan()
 	fmt.Println()
 	return scanName.Text()
@@ -53,4 +53,45 @@ func rValue() string {
 	scanValue.Scan()
 	fmt.Println()
 	return scanValue.Text()
+}
+
+func createJSONMenu() {
+	input := '0'
+	for input != '3' {
+		fmt.Println("1. Add Key Value Pair")
+		fmt.Println("2. Add Child to Previous")
+		fmt.Println("3. Done")
+		reader := bufio.NewReader(os.Stdin)
+		input, _, err := reader.ReadRune()
+
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Printf("You selected %v \n", string(input))
+
+		switch input {
+		case '1':
+			fmt.Println("Adding new key value pair.")
+			addParent()
+
+		case '2':
+			fmt.Println("Adding child to previous")
+			addChild()
+
+		case '3':
+			fmt.Println("Done")
+			return
+
+		default:
+			fmt.Println("No Choice.")
+		}
+	}
+}
+
+func addParent() {
+	return
+}
+
+func addChild() {
+	return
 }

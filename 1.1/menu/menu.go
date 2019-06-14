@@ -2,6 +2,7 @@ package menu
 
 import (
 	"bufio"
+	"encoding/csv"
 	"fmt"
 	"os"
 
@@ -13,6 +14,7 @@ import (
 func StartMenu() {
 	input := '0'
 	for input != '3' {
+		readMenu()
 		fmt.Println("1. Create JSON")
 		fmt.Println("2. Start Web Server")
 		fmt.Println("3. Exit")
@@ -53,4 +55,18 @@ func makeMenu(s []string) {
 	for i := range s {
 		fmt.Println(s[i])
 	}
+}
+
+func readMenu() {
+
+	f, err := os.Open("./menu/menus.dat")
+	if err != nil {
+		fmt.Printf("cannot open menus.dat %v \n", err)
+
+	}
+	defer f.Close()
+
+	r := csv.NewReader(bufio.NewReader(f))
+	fmt.Println("this", r.Comma)
+
 }

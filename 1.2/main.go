@@ -8,16 +8,31 @@ import (
 	"strings"
 )
 
-const vLine = "─"
-const uRight = "┐"
-const uLeft = "┌"
-const space = " "
-const hLine = "│"
-const bRight = "┘"
-const bLeft = "└"
-const bl = " "
+// const vLine = "─"
+// const uRight = "┐"
+// const uLeft = "┌"
+// const space = " "
+// const hLine = "│"
+// const bRight = "┘"
+// const bLeft = "└"
+// const bl = " "
 
 type format string
+
+type boxDraw struct {
+	vLine  string
+	uRight string
+	uLeft  string
+	space  string
+	hLine  string
+	bRight string
+	bLeft  string
+	bl     string
+}
+
+type B interface {
+	box1()
+}
 
 type Menu struct {
 	myMenu []string
@@ -45,9 +60,11 @@ func clearScreen() {
 }
 
 func buildBox(x int, y int, m Menu, f format) {
-	top := uLeft + strings.Repeat(vLine, x) + uRight
-	bottom := bLeft + strings.Repeat(vLine, x) + bRight
-	blank := hLine + strings.Repeat(space, x) + hLine
+	b := boxDraw{}
+
+	top := b.box1().uLeft + strings.Repeat(b.box1().vLine, x) + b.box1().uRight
+	bottom := b.box1().bLeft + strings.Repeat(b.box1().vLine, x) + b.box1().bRight
+	blank := b.box1().hLine + strings.Repeat(b.box1().space, x) + b.box1().hLine
 
 	fmt.Print(top + "\n")
 	fmt.Print(blank + "\n")
@@ -70,18 +87,32 @@ func buildBox(x int, y int, m Menu, f format) {
 }
 
 func middleCentered(x int, s string) string {
+	b := boxDraw{}
 	var sLen int
 	if len(s)%2 == 0 {
 		sLen = len(s)
-		return hLine + strings.Repeat(space, x/2-sLen/2) + s + strings.Repeat(space, x/2-sLen/2) + hLine + "\n"
+		return b.box1().hLine + strings.Repeat(b.box1().space, x/2-sLen/2) + s + strings.Repeat(b.box1().space, x/2-sLen/2) + b.box1().hLine + "\n"
 	} else {
 		sLen = len(s) + 1
-		return hLine + strings.Repeat(space, x/2-sLen/2) + s + strings.Repeat(space, x/2-sLen/2+1) + hLine + "\n"
+		return b.box1().hLine + strings.Repeat(b.box1().space, x/2-sLen/2) + s + strings.Repeat(b.box1().space, x/2-sLen/2+1) + b.box1().hLine + "\n"
 	}
 
 }
 
 func middleLeftJustify(x int, s string) string {
+	b := boxDraw{}
+	return b.box1().hLine + b.box1().bl + s + strings.Repeat(b.box1().space, (x-1-len(s))) + b.box1().hLine + "\n"
+}
 
-	return hLine + bl + s + strings.Repeat(space, (x-1-len(s))) + hLine + "\n"
+func (m boxDraw) box1() boxDraw {
+	m.vLine = "─"
+	m.uRight = "┐"
+	m.uLeft = "┌"
+	m.space = " "
+	m.hLine = "│"
+	m.bRight = "┘"
+	m.bLeft = "└"
+	m.bl = " "
+	return m
+
 }
